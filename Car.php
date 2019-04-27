@@ -2,8 +2,11 @@
 
 class Car{
     public function carc(){
-    return 'green';
+    return 'green';    
 }
+    public function model(){
+    
+    }
 }
 
 ?>
