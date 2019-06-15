@@ -2,7 +2,7 @@
 class Inventory_Get{
 	public $conn;
 	public function __construct(){
-		this->$conn = new PDO('mysql:host=localhost;dbname=test','testuser','1');
+		$this->conn = new PDO('mysql:host=localhost;dbname=test','testuser','1');
 	}
 	public function insertData($item,$manufacturer,$quantity,$price){
 		try{
@@ -35,6 +35,5 @@ class Inventory_Get{
 	}
 
 
-}
 }
 ?>

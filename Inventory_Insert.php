@@ -2,11 +2,14 @@
 include 'Inventory_Get.php';
 
 $conn = new Inventory_Get;
-
+$item = $_POST['item'];
+$manufacturer = $_POST['manufacturer'];
+$quantity = $_POST['quantity'];
+$price = $_POST['price'];
 
 if(isset($_POST['submit'])){
-	$username = $_POST['username'];
-	$password = md5($_POST['password']);
+	$username = "testuser";
+	$password = 1;
 	$data = array(
 		':item' => $item,
 		':manufacturer' => $manufacturer,

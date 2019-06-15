@@ -2,8 +2,6 @@
 include 'Inventory_Get.php';
 
 $conn = new Inventory_Get;
-$getId = $_GET['id'];
-$res = $conn->getAll("SELECT * FROM inventory WHERE id=$getId",null);
 
 //update method
 if(isset($_POST['submit'])){
