@@ -2,7 +2,8 @@
 include 'Inventory_Get.php';
 
 $conn = new Inventory_Get;
-
+$GetItem = $_GET['item'];
+$res = $conn->getAll("SELECT * FROM inventory WHERE item=$GetItem",null);
 //update method
 if(isset($_POST['submit'])){
 
@@ -18,7 +19,7 @@ if(isset($_POST['submit'])){
 		':price' => $price
 	);
 
-	$conn->update("UPDATE inventory SET item=:item,manufacturer=:manufacturer,quantity=:quantity,price=:price WHERE id=$getId",$data);
+	$conn->update("UPDATE inventory SET item=:item,manufacturer=:manufacturer,quantity=:quantity,price=:price WHERE id=$GetItem",$data);
 }
 ?>
 <!DOCTYPE html>

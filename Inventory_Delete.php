@@ -4,7 +4,7 @@ include 'Inventory_Get.php';
 
 $conn = new Inventory_Get;
 
-$getId = $_GET['id'];
+$getId = $_GET['item'];
 
 $conn->update("DELETE FROM inventory WHERE id=$getId",null);
 

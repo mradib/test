@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
 		':quantity' => $quantity,
 		':price' => $price
 	);
-	$conn->update("INSERT INTO users (item,manufacturer,quantity, price) VALUES (:item,:manufacturer,:quantity,:price)",$data);
+	$conn->update("INSERT INTO inventory (item,manufacturer,quantity, price) VALUES (:item,:manufacturer,:quantity,:price)",$data);
 
 	echo "Inserted";	
 }
