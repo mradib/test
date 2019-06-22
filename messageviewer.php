@@ -1,6 +1,6 @@
 <?php
 echo "<table style='border: solid 1px black;'>";
-echo "<tr><th>Item</th><th>Manufacturer</th><th>Quantity</th><th>Price</th></tr>";
+echo "<tr><th>Messages</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator { 
     function __construct($it) { 
@@ -28,7 +28,7 @@ $dbname = "test";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT item, manufacturer, quantity, price FROM inventory"); 
+    $stmt = $conn->prepare("SELECT * FROM messages"); 
     $stmt->execute();
 
     // set the resulting array to associative
@@ -45,42 +45,22 @@ echo "</table>";
 ?>
 
 <?php
-public $a;
-
 include 'Inventory_Get.php';
 
 $conn = new Inventory_Get;
-$item = $_POST['item'];
-$manufacturer = $_POST['manufacturer'];
-$quantity = $_POST['quantity'];
-$price = $_POST['price'];
 
-function rem($quantity){
-	$data = array(
-		':item' => $item,
-		':manufacturer' => $manufacturer,
-		':quantity' => $quantity,
-		':price' => $price
-	);
-	$sql = "SELECT quantity FROM inventory WHERE item = :item";
-    $result = $conn->query($sql);
-	$remain = $result - $quantity;
-	return $remain;
-}
+
 
 if(isset($_POST['submit'])){
+    $message = $_POST['message'];
 	$username = "testuser";
 	$password = 1;
 	$data = array(
-		':item' => $item,
-		':manufacturer' => $manufacturer,
-		':quantity' => $a,
-		':price' => $price
+		':message' => $message
 	);
-	$a = rem($quantity);
-	$conn->update("UPDATE inventory SET manufacturer = :manufacturer, quantity = :quantity, price = :price WHERE item = :item", $data);
+	$conn->update("DELETE FROM messages WHERE message = :message", $data);
 
-	echo "Purchased";	
+	echo "Deleted";	
 }
 
 ?>
@@ -88,16 +68,13 @@ if(isset($_POST['submit'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>purchase</title>
+	<title>view and delete</title>
 </head>
 <body>
 
 	<form action="" method="POST">
-		<input type="text" name="item">
-		<input type="text" name="manufacturer">
-		<input type="text" name="quantity">
-		<input type="text" name="price">
-		<input type="submit" name="submit" value="buy">
+		<input type="text" name="message">
+		<input type="submit" name="submit" value="delete">
 	</form>
 
 </body>
